@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Martin Angeles Paredes - Ricardo Garcia Rea</title>
+	<script>
+		var TieneCon = [["torrtuga","garras"],
+					 ["torrtuga","proteccion queratina"],
+					 ["Gallo","proteccion queratina"],
+					 ["Gallo","garras"],
+					 ["Cocodrilo","proteccion queratina"],
+					 ["Cocodrilo","garras"],
+					 ["Iguana","proteccion queratina"],
+					 ["Iguana","garras"],
+					 ["Gato","G. mamarias"],
+					 ["Gato","pelo"],
+					 ["Gato","garras"],
+					 ["Ballena","G. mamarias"],
+					 ["Oso","G. mamarias"],
+					 ["Oso","pelo"],
+					 ["Oso","garras"],
+					 ["Delfin","G. mamarias"]];
+		var ViveCon =[["Tortuga","Tierra"],
+					["Tortuga","Agua"],
+					["Gallo","Tierra"],
+					["Cocodrilo","Tierra"],
+					["Cocodrilo","Agua"],
+					["Iguana","Tierra"],
+					["Gato","Tierra"],
+					["Ballena","Agua"],
+					["Oso","Tierra"],
+					["Delfin","Agua"]];
+		var ConEs = [["proteccion queratina","Oviparo"],
+				  ["Oviparo","Sauropsidos"],
+				  ["Sauropsidos","tetrapodos"],
+				  ["G. mamarias","viviparo"],
+				  ["viviparo","Mammalia"],
+				  ["Mammalia","tetrapodos"],
+				  ["Tortuga","Oviparo"],
+				  ["Gallo","Oviparo"],
+				  ["Cocodrilo","Oviparo"],
+				  ["Iguana","Oviparo"],
+				  ["Gato","viviparo"],
+				  ["Oso","viviparo"],
+				  ["Ballena","viviparo"],
+				  ["Delfin","viviparo"],
+				  ["tetrapodos","vertebrado"]];
+
+        function countPal(A,CON,NA){
+        	let N = [];
+        	for(var i = 0; i < CON.length; i++){
+        		if(CON[i][0] == A){
+        			N.push(CON[i][1]);
+        			console.log("a",CON[i][1])
+        		}
+        	}
+        	return N;
+        }
+
+        function EncontrarTiene(A,NA){
+        	let pos = NA.indexOf(A);
+        	if(pos == -1){
+        		return false;
+        	}
+        	else{
+        		return true;
+        	}
+        }
+
+		function esta(P,L,CON){
+			var LdP = buscar(P,CON);
+			var v;
+			if(LdP == L){
+				return true;
+			}
+			else if(LdP == false){
+				return false;
+			}
+			else{
+				return (esta(LdP,L,CON));
+			}
+		}
+
+		function buscar(P,CON){
+			var i = 0;
+			var l = CON.length;
+			while(i < l){
+				if(P == CON[i][0]){
+					//recorreMatriz(CON[i][1],CON);
+					console.log(CON[i][1]);
+					return CON[i][1];
+				}
+				i++;
+			}
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<h1 style="text-align: center;">Martin Angeles Paredes 16590445</h1>
+	<h1 style="text-align: center;">Ricardo García Rea 16590465</h1>
+	<script>
+
+		var animal= "Oso";
+		var Tiene = "garras";
+		var vive = "Tierra";
+		var es = "Sauropsidos";
+		let NA = [];
+		NA = countPal(animal,TieneCon,NA);
+
+		let VA = [];
+		VA = countPal(animal,ViveCon,VA);
+		let posVive = EncontrarTiene(vive,VA);
+		let pos = EncontrarTiene(Tiene,NA);
+
+		var x = esta(animal,es,ConEs);
+		
+		if(pos){
+			document.write("<br/>El ",animal," tiene ",Tiene);
+		}
+		else{
+			document.write("<br/>El ",animal," no tiene ",Tiene);
+		}
+		if(posVive){
+			document.write(" y vive en ",vive);
+		}else{
+			document.write(" y no vive en ",vive);
+		}
+		if(x){
+			document.write(" es ",es);
+		}else{
+			document.write(" no es ",es);
+		}
+	</script>
+</body>
+</html>
